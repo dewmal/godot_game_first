@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/charactor.png" type="Texture" id=2]
+[ext_resource path="res://assets/light.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.01024, 7.93921 )
@@ -22,4 +23,14 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.6, 0.6 )
+smoothing_enabled = true
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+color = Color( 0.996078, 0.678431, 0.678431, 1 )
+shadow_enabled = true
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
