@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 var movespeed = 500
 var bullet_speed= 2000
-var bullet = preload("res://objects/bullet.tscn")
+var bullet = preload("res://objects/Bullet.tscn")
 
 func _ready():
 	pass # Replace with function body.
@@ -34,3 +34,10 @@ func fire():
 	bullet_instance.apply_impulse(Vector2(),Vector2(bullet_speed,0).rotated(rotation))
 	get_tree().get_root().call_deferred("add_child",bullet_instance)
 	
+func kill():
+	get_tree().reload_current_scene()
+
+
+func _on_Area2D_body_entered(body):
+	if "Enemy" in body.name:
+		kill()
